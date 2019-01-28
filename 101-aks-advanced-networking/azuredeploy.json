@@ -22,7 +22,7 @@
             }
         },
         "osDiskSizeGB": {
-            "defaultValue": 0,
+            "defaultValue": 128,
             "minValue": 0,
             "maxValue": 1023,
             "type": "int",
@@ -40,7 +40,7 @@
             }
         },
         "agentVMSize": {
-            "defaultValue": "Standard_D2_v2",
+            "defaultValue": "Standard_DS2_v2",
             "type": "string",
             "metadata": {
                 "description": "The size of the Virtual Machine."
@@ -82,7 +82,7 @@
             }
         },
         "enableHttpApplicationRouting": {
-            "defaultValue": false,
+            "defaultValue": true,
             "type": "bool",
             "metadata": {
                 "description": "boolean flag to turn on and off of http application routing"
@@ -93,14 +93,14 @@
                 "azure",
                 "kubenet"
             ],
-            "defaultValue": "azure",
+            "defaultValue": "kubenet",
             "type": "string",
             "metadata": {
                 "description": "Network plugin used for building Kubernetes network."
             }
         },
         "maxPods": {
-            "defaultValue": 30,
+            "defaultValue": 110,
             "type": "int",
             "metadata": {
                 "description": "Maximum number of pods that can run on a node."
@@ -131,16 +131,23 @@
                 "description": "Subnet name that will contain the App Service Environment"
             }
         },
+        "podCidr": {
+            "type": "string",
+            "defaultValue": "10.123.0.0/16",
+            "metadata": {
+                "description": "A CIDR notation IP range from which to assign pod cluster IPs."
+            }
+        },
         "serviceCidr": {
             "type": "string",
-            "defaultValue": "10.0.0.0/16",
+            "defaultValue": "10.124.0.0/16",
             "metadata": {
                 "description": "A CIDR notation IP range from which to assign service cluster IPs."
             }
         },
         "dnsServiceIP": {
             "type": "string",
-            "defaultValue": "10.0.0.10",
+            "defaultValue": "10.124.0.10",
             "metadata": {
                 "description": "Containers DNS server IP address."
             }
@@ -163,9 +170,7 @@
             "apiVersion": "2018-03-31",
             "location": "[parameters('location')]",
             "tags": {},
-            "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', 'ClusterSubnetRoleAssignmentDeployment')]"
-            ],
+            "dependsOn": [],
             "properties": {
                 "kubernetesVersion": "[parameters('kubernetesVersion')]",
                 "enableRBAC": "[parameters('enableRBAC')]",
@@ -193,6 +198,7 @@
                 },
                 "networkProfile": {
                     "networkPlugin": "[parameters('networkPlugin')]",
+                    "podCidr": "[parameters('podCidr')]",
                     "serviceCidr": "[parameters('serviceCidr')]",
                     "dnsServiceIP": "[parameters('dnsServiceIP')]",
                     "dockerBridgeCidr": "[parameters('dockerBridgeCidr')]"
