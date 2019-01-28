@@ -15,7 +15,7 @@
             "value": 3
        },
        "agentVMSize": {
-            "value": "Standard_DS2_V2"
+            "value": "Standard_D2s_v3"
         },
         "existingServicePrincipalObjectId": {
             "value": "2e6c9bab-ea24-43dd-82bd-dd5acc846118"
