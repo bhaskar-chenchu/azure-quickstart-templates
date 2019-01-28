@@ -1,30 +1,66 @@
-    {
+{
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "resourceName": {
-            "value": "GEN-UNIQUE"
+            "value": "weugcswmsanaksb"
         },
         "dnsPrefix": {
-            "value": "GEN-UNIQUE"
+            "value": "weugcswmsanaksb"
+        },
+        "osDiskSizeGB": {
+            "value": 128
+       },
+       "agentCount": {
+            "value": 3
+       },
+       "agentVMSize": {
+            "value": "Standard_DS2_V2"
         },
         "existingServicePrincipalObjectId": {
-            "value": "GEN-GUID"
+            "value": "2e6c9bab-ea24-43dd-82bd-dd5acc846118"
         },
         "existingServicePrincipalClientId": {
-            "value": "GEN-GUID"
+            "value": "fb3fd119-f2bb-4316-b737-18af99a89185"
         },
         "existingServicePrincipalClientSecret": {
-            "value": "GEN-PASSWORD"
+            "value": "tVQ2fyr6ZM7lmk5DII7bwmaSlDEAwIQYfgf3kQQJktc="
         },
+        "kubernetesVersion": {
+            "value": "1.11.5"
+        },                        
+        "enableHttpApplicationRouting": {
+            "value": "true"
+        },  
+        "networkPlugin": {
+            "value": "kubenet"
+        },    
+        "maxPods": {
+            "value": "30"
+        },  
+        "enableRBAC": {
+            "value": "true"
+        }, 
         "existingVirtualNetworkName": {
-            "value": "GET-PREREQ-vnetName"
+            "value": "weu-gcswms-testvnet"
         },
         "existingVirtualNetworkResourceGroup": {
-            "value": "GET-PREREQ-vnetResourceGroupName"
+            "value": "weu-gcswms-testvnet"
         },
         "existingSubnetName": {
-            "value": "GET-PREREQ-subnetName"
-        }
+            "value": "weu-gcswms-testvnetsn-02"
+        },
+        "podCidr": {
+            "value": "10.123.0.0/16"
+        },
+        "serviceCidr": {
+            "value": "10.124.0.0/16"
+        },             
+        "dnsServiceIP": {
+            "value": "10.124.0.10"
+        },
+        "dockerBridgeCidr": {
+            "value": "172.17.0.1/16"
+        }        
     }
 }
